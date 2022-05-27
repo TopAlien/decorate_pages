@@ -3,16 +3,15 @@
     <div class="layout_slider">
       <Slider />
     </div>
-
-    <div> 
-      <Render />
-    </div>
+    <Render />
+    <Setting />
   </div>
 </template>
 
 <script setup>
 import Slider from './slider/index.vue';
 import Render from './render/index.vue';
+import Setting from './setting/index.vue';
 </script>
 
 <style>

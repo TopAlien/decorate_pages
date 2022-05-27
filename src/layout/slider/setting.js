@@ -96,19 +96,6 @@ export const slider = [
           },
         }
       },
-      {
-        id: '1-8',
-        label: '商品搜索',
-        icon: shopSearch,
-        component: {
-          name: 'ShopSearch',
-          usePageConfigName: 'defaultPageConfig',
-          useComponentConfig: {
-            name: 'defaultComponentConfig',
-            initConfig: {},
-          },
-        }
-      }
     ]
   },
   {
