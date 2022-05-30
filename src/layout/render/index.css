@@ -1,2 +1,12 @@
-.render_wrap {
+.widget_item{
+  border: 1px solid #f7f8fa;
+}
+
+.widget_item--active, .widget_item.widget_item--active:hover{
+  border: 1px solid rgb(21, 91, 212);
+}
+
+.widget_item:hover{
+  border: 1px dashed rgb(21, 91, 212);
+  cursor: pointer;
 }

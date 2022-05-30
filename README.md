@@ -1,7 +1,25 @@
-# Vue 3 + Vite
+```js
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+{
+  id: '2',
+  /** 
+   * 分组名称
+   */
+  label: '业务组件',
+  children: [
+    {
+      /** 命名规则：pid-id */
+      id: '2-1',
+      /** 装修组件名称 */
+      label: '商品',
+      /** 组件Icon */
+      icon: '商品ICON',
+      /** 渲染这个组件的名称，规则-例: widget/Shop/index.vue会自动导入文件，使用Shop做为组件组册名 */
+      name: 'Shop',
+      /** 组件设置 初始化配置 */
+      initComponentConfig: {},
+    }
+  ]
+}
 
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+```
