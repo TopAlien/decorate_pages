@@ -7,90 +7,21 @@ export const slider = [
     children: [
       {
         id: '1-1',
-        label: '商品搜索',
+        label: '商品搜索1-1',
         icon: shopSearch,
-        component: {
-          name: 'ShopSearch',
-          usePageConfigName: 'defaultPageConfig',
-          useComponentConfig: {
-            name: 'defaultComponentConfig',
-            initConfig: {},
-          },
-        }
+        name: 'ShopSearch',
+        componentConfig: {},
+        pageConfig: {},
       },
       {
         id: '1-2',
-        label: '商品搜索',
+        label: '商品搜索1-2',
         icon: shopSearch,
-        component: {
-          name: 'ShopSearch',
-          usePageConfigName: 'defaultPageConfig',
-          useComponentConfig: {
-            name: 'defaultComponentConfig',
-            initConfig: {},
-          },
-        }
-      },
-      {
-        id: '1-3',
-        label: '商品搜索',
-        icon: shopSearch,
-        component: {
-          name: 'ShopSearch',
-          usePageConfigName: 'defaultPageConfig',
-          useComponentConfig: {
-            name: 'defaultComponentConfig',
-            initConfig: {},
-          },
-        }
-      },
-      {
-        id: '1-4',
-        label: '商品搜索',
-        icon: shopSearch,
-        component: {
-          name: 'ShopSearch',
-          usePageConfigName: 'defaultPageConfig',
-          useComponentConfig: {
-            name: 'defaultComponentConfig',
-            initConfig: {},
-          },
-        }
-      },
-      {
-        id: '1-5',
-        label: '商品搜索',
-        icon: shopSearch,
-        component: {
-          name: 'ShopSearch',
-          usePageConfigName: 'defaultPageConfig',
-          useComponentConfig: {
-            name: 'defaultComponentConfig',
-            initConfig: {},
-          },
-        }
-      },
-      {
-        id: '1-6',
-        label: '商品搜索',
-        icon: shopSearch,
-        component: {
-          name: 'ShopSearch',
-          usePageConfigName: 'defaultPageConfig',
-          useComponentConfig: {
-            name: 'defaultComponentConfig',
-            initConfig: {},
-          },
-        }
-      },
-      {
-        id: '1-7',
-        label: '商品搜索',
         name: 'ShopSearch',
-        icon: shopSearch,
-        initConfig: {},
+        componentConfig: {},
+        pageConfig: {},
       },
-    ]
+    ],
   },
   {
     id: '2',
@@ -100,15 +31,10 @@ export const slider = [
         id: '2-1',
         label: '商品',
         icon: shopSearch,
-        component: {
-          name: 'Shop',
-          usePageConfigName: 'defaultPageConfig',
-          useComponentConfig: {
-            name: 'defaultComponentConfig',
-            initConfig: {},
-          },
-        }
-      }
-    ]
-  }
-]
+        name: 'Shop',
+        componentConfig: {},
+        pageConfig: {},
+      },
+    ],
+  },
+];

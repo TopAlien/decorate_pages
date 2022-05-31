@@ -1,21 +1,24 @@
 <template>
-  <div class="slider_group" v-for='group in slider' :key="group.id">
+  <div class="slider_group" v-for="group in slider" :key="group.id">
     <h4 class="slider_group--title">{{ group.label }}</h4>
-    <div v-for="item in group.children" :key='item.id'>
-      <div class="slide_item">
-        <img :src="item.icon" alt="">
-        <div>{{ item.label }}</div>
-      </div>
-    </div>
+    <draggable :list="group.children" :group="{ name: 'slide_drag', pull: 'clone', put: false }" item-key="id">
+        <template #item="{ element }">
+          <div class="slide_item">
+            <img :src="element.icon" />
+            <div>{{ element.label }}</div>
+          </div>
+        </template>
+    </draggable>
   </div>
 </template>
 
 <script setup>
-  import { slider } from './setting.js';
+import { slider } from './setting.js';
+import draggable from 'vuedraggable';
 </script>
 
 <style>
-.slider_group{
+.slider_group {
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
@@ -29,13 +32,13 @@
   font-size: 12px;
 }
 
-.slide_item:hover{
+.slide_item:hover {
   cursor: move;
   color: white;
   background-color: #155bd4;
 }
 
-.slider_group--title{
+.slider_group--title {
   width: 100%;
 }
 </style>

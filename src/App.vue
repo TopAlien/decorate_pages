@@ -10,7 +10,7 @@ import Layout from './layout/index.vue'
 body, html {
   height: 100%;
   width: 100%;
-  min-width: 1080px;
+  min-width: 1366px;
   background-color: #f7f8fa;
   margin: 0;
 }

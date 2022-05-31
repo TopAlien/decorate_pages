@@ -3,17 +3,22 @@
     <div class="layout_slider">
       <Slider />
     </div>
-    <Render :widgets="decoratePage.widgets" @setCurrentWidget="setCurrentWidget" />
+    <Render :widgets="decoratePage.widgets" @setCurrentWidget="setCurrentWidget" @setPage='setPage' />
     <div class="layout_setting">
       <div class="layout_setting--btns">
-        <div
-          v-for="item in settingBtn"
-          :key="item.id"
-          :class="['btn-item', currentSetting === item.actionType && 'btn-item--active']"
-          @click="handleSetting(item.actionType)"
-        >
-          {{ item.label }}
-        </div>
+        <a-space direction="vertical" size="medium">
+          <div v-for="item in settingBtn" :key="item.id">
+            <a-button
+              :type="currentSetting === item.actionType ? 'primary' : 'outline'"
+              @click="handleSetting(item.actionType)"
+            >
+              <template #icon>
+                <icon-settings />
+              </template>
+              {{ item.label }}
+            </a-button>
+          </div>
+        </a-space>
       </div>
 
       <div class="layout_setting--box">
@@ -27,6 +32,7 @@
 
 <script setup>
 import { reactive, ref } from 'vue';
+import { IconSettings } from '@arco-design/web-vue/es/icon';
 import Slider from './slider/index.vue';
 import Render from './render/index.vue';
 import PageSetting from './setting/pageSetting.vue';
@@ -34,29 +40,7 @@ import ComponentSetting from './setting/componentSetting.vue';
 import ComponentManage from './setting/componentManage.vue';
 
 const decoratePage = reactive({
-  widgets: [
-    {
-      id: '1-1',
-      label: '商品搜索',
-      initComponentConfig: {},
-      initPageConfig: {},
-      name: 'ShopSearch',
-    },
-    {
-      id: '1-3',
-      label: '商品搜索',
-      name: 'ShopSearch',
-      initComponentConfig: {},
-      initPageConfig: {},
-    },
-    {
-      id: '1-2',
-      label: '商品',
-      name: 'Shop',
-      initComponentConfig: {},
-      initPageConfig: {},
-    },
-  ],
+  widgets: [],
 });
 
 const currentWidget = ref({});
@@ -72,19 +56,23 @@ const settingBtn = [
   },
   {
     id: 2,
-    label: '组件设置',
-    actionType: 'componentSetting',
+    label: '组件管理',
+    actionType: 'componentManage',
   },
   {
     id: 3,
-    label: '组件管理',
-    actionType: 'componentManage',
+    label: '组件设置',
+    actionType: 'componentSetting',
   },
 ];
 const currentSetting = ref('pageSetting');
 const handleSetting = actionType => {
   currentSetting.value = actionType;
 };
+
+const setPage = () => {
+   currentSetting.value = 'pageSetting';
+}
 </script>
 
 <style>
@@ -128,7 +116,7 @@ const handleSetting = actionType => {
 
 .layout_setting--btns {
   position: absolute;
-  left: -90px;
+  left: -124px;
   top: 50px;
 }
 </style>

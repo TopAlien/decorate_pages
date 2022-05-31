@@ -1,13 +1,55 @@
-<!--
- * @Author       : bo.wang
- * @Date         : 2022-05-30 09:45:14
- * @LastEditors  : bo.wang
- * @LastEditTime : 2022-05-30 16:16:48
- * @Description  : 请填写简介
--->
-<template>
-<div>
-  组件管理
+<style scoped>
+.component_manage--item {
+  display: flex;
+  align-items: center;
+  cursor: move;
+  margin-bottom: 12px;
+}
 
-</div>
+.manage_item--label {
+  flex: 1;
+}
+
+.com_item--delete {
+  cursor: pointer;
+}
+</style>
+<template>
+  <div>
+    <Header title="组件管理" />
+    <a-empty v-if="!props.widgets || props.widgets.length <= 0" />
+    <draggable v-else :list="props.widgets" item-key="id">
+      <template #item="{ element }">
+        <a-button type="dashed" long class="component_manage--item">
+          <template #icon>
+            <icon-drag-arrow />
+          </template>
+          <span class="manage_item--label">{{ element.label }}</span>
+          <a-popconfirm content="确认删除该组件吗?" @ok="handleDelete(element)">
+            <span class="com_item--delete"> <icon-delete /> </span>
+          </a-popconfirm>
+        </a-button>
+      </template>
+    </draggable>
+  </div>
 </template>
+
+<script setup>
+import { IconDragArrow, IconDelete } from '@arco-design/web-vue/es/icon';
+import draggable from 'vuedraggable';
+import Header from './components/Header.vue';
+
+const props = defineProps({
+  widgets: {
+    type: Array,
+    default: () => [],
+  },
+});
+
+const handleDelete = ({ id }) => {
+  const index = props.widgets.findIndex(item => item.id === id);
+  if (index >= 0) {
+    props.widgets.splice(index, 1);
+  }
+};
+</script>
