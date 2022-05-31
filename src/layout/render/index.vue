@@ -49,6 +49,7 @@ const handleClickWidget = (current, index) => {
 };
 
 const handleClickHeader = () => {
+  currentWidgetIndex.value = null;
   emit('setPage');
 };
 </script>
