@@ -1,5 +1,5 @@
 <template>
-  <a-collapse :default-active-key="defaultActive" expand-icon-position="right">
+  <a-collapse class="collapse_slide" :default-active-key="defaultActive" expand-icon-position="right">
     <a-collapse-item v-for="group in slider" :key="group.id" :header="group.label">
       <draggable
         class="slider_group"
@@ -27,15 +27,20 @@ const defaultActive = ref(slider.map(item => item.id));
 </script>
 
 <style>
+.collapse_slide .arco-collapse-item-content{
+  padding: 13px;
+}
 .slider_wrap {
   padding: 10px 10px 0;
 }
 .slider_group {
+  width: 100%;
   display: flex;
+  gap: 6px;
   flex-wrap: wrap;
 }
 .slide_item {
-  width: 70px;
+  width: 80px;
   padding: 10px 0 10px;
   box-sizing: border-box;
   margin-bottom: 20px;
@@ -56,6 +61,7 @@ const defaultActive = ref(slider.map(item => item.id));
   width: 32px;
   height: 32px;
   margin-bottom: 5px;
+  border-radius: 5px;
 }
 
 .slide_item:hover {

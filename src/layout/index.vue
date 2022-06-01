@@ -3,12 +3,13 @@
     <div class="layout_slider">
       <Slider />
     </div>
-    <Render :widgets="decoratePage.widgets" @setCurrentWidget="setCurrentWidget" @setPage='setPage' />
+    <Render :widgets="decoratePage.widgets" :pageConfig="pageConfig.config" @setCurrentWidget="setCurrentWidget" />
     <div class="layout_setting">
       <div class="layout_setting--btns">
         <a-space direction="vertical" size="medium">
           <div v-for="item in settingBtn" :key="item.id">
             <a-button
+              v-if="item.actionType === 'componentSetting' ? showComponentSetting : true"
               :type="currentSetting === item.actionType ? 'primary' : 'outline'"
               @click="handleSetting(item.actionType)"
             >
@@ -22,30 +23,58 @@
       </div>
 
       <div class="layout_setting--box">
-        <PageSetting v-if="currentSetting === 'pageSetting'" :config="currentWidget.initPageConfig" />
-        <ComponentSetting v-if="currentSetting === 'componentSetting'" :config="currentWidget.initComponentConfig" />
-        <ComponentManage v-if="currentSetting === 'componentManage'" :widgets="decoratePage.widgets" />
+        <div v-show="currentSetting === 'pageSetting'">
+          <Header title="页面设置" />
+          <component :is="pageSettingMap[pageConfig.component]" :config="pageConfig.config" />
+        </div>
+
+        <div v-show="currentSetting === 'componentSetting'">
+          <Header title="组件设置" />
+          <component
+            :is="componentSettingMap[currentWidget.useComponentName || 'defaultSetting']"
+            :config="currentWidget.componentConfig"
+          />
+        </div>
+
+        <div v-show="currentSetting === 'componentManage'">
+          <Header title="组件管理" />
+          <ComponentManage :widgets="decoratePage.widgets" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
+import { reactive, ref, computed } from 'vue';
 import { IconSettings } from '@arco-design/web-vue/es/icon';
+import pageSettingMap from '../autoImport/pageSettingMap.js';
+import componentSettingMap from '../autoImport/componentSettingMap.js';
+import Header from './setting/components/Header.vue';
+import { usePageConfig } from './useSetting.js';
+
 import Slider from './slider/index.vue';
 import Render from './render/index.vue';
-import PageSetting from './setting/pageSetting.vue';
-import ComponentSetting from './setting/componentSetting.vue';
 import ComponentManage from './setting/componentManage.vue';
+
+const { pageConfig } = usePageConfig();
 
 const decoratePage = reactive({
   widgets: [],
 });
 
 const currentWidget = ref({});
-const setCurrentWidget = current => {
-  currentWidget.value = current;
+const showComponentSetting = ref(false);
+const setCurrentWidget = (current, index) => {
+  /** index -1 为顶部标题组件 */
+  showComponentSetting.value = false;
+  if (index === -1) {
+    handleSetting('pageSetting');
+  } else {
+    handleSetting('componentSetting');
+    showComponentSetting.value = true;
+    currentWidget.value = current;
+  }
 };
 
 const settingBtn = [
@@ -69,10 +98,6 @@ const currentSetting = ref('pageSetting');
 const handleSetting = actionType => {
   currentSetting.value = actionType;
 };
-
-const setPage = () => {
-   currentSetting.value = 'pageSetting';
-}
 </script>
 
 <style>
