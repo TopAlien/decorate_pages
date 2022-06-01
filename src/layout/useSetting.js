@@ -4,10 +4,6 @@
  */
 export const pageConfigSelect = type => {
   const pageConfigMap = new Map();
-  /**
-   * config 为页面设置配置初始化文件
-   * component 为当前页面设置选择的页面配置，默认：defaultSetting [/setting/pageSetting/defaultSetting.vue]
-   */
   const defaultSet = {
     config: { title: 'ealien', name: 'default', age: null, gender: '' },
     component: 'defaultSetting',

@@ -1,7 +1,7 @@
-import shopSearchIcon from '../../assets/slider/shop_search.png';
-import shopIcon from '../../assets/slider/goods.png';
+import shopSearchIcon from '../../assets/panel/shop_search.png';
+import shopIcon from '../../assets/panel/goods.png';
 
-export const slider = [
+export const panel = [
   {
     id: '1',
     label: '基础组件',

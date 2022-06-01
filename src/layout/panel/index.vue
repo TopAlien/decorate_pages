@@ -1,8 +1,8 @@
 <template>
   <a-collapse class="collapse_slide" :default-active-key="defaultActive" expand-icon-position="right">
-    <a-collapse-item v-for="group in slider" :key="group.id" :header="group.label">
+    <a-collapse-item v-for="group in panel" :key="group.id" :header="group.label">
       <draggable
-        class="slider_group"
+        class="panel_group"
         :list="group.children"
         :group="{ name: 'slide_drag', pull: 'clone', put: false }"
         item-key="id"
@@ -10,7 +10,7 @@
         <template #item="{ element }">
           <div class="slide_item">
             <img :src="element.icon" />
-            <div class="slider_label">{{ element.label }}</div>
+            <div class="panel_label">{{ element.label }}</div>
           </div>
         </template>
       </draggable>
@@ -21,19 +21,19 @@
 <script setup>
 import { ref } from 'vue';
 import draggable from 'vuedraggable';
-import { slider } from './setting.js';
+import { panel } from './setting.js';
 
-const defaultActive = ref(slider.map(item => item.id));
+const defaultActive = ref(panel.map(item => item.id));
 </script>
 
 <style>
 .collapse_slide .arco-collapse-item-content{
   padding: 13px;
 }
-.slider_wrap {
+.panel_wrap {
   padding: 10px 10px 0;
 }
-.slider_group {
+.panel_group {
   width: 100%;
   display: flex;
   gap: 6px;
@@ -49,7 +49,7 @@ const defaultActive = ref(slider.map(item => item.id));
   color: rebeccapurple;
 }
 
-.slider_label {
+.panel_label {
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -70,7 +70,7 @@ const defaultActive = ref(slider.map(item => item.id));
   background-color: #155bd4;
 }
 
-.slider_group--title {
+.panel_group--title {
   width: 100%;
 }
 </style>

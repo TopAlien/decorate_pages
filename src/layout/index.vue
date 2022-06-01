@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
-    <div class="layout_slider">
-      <Slider />
+    <div class="layout_panel">
+      <panel />
     </div>
     <Render :widgets="decoratePage.widgets" :pageConfig="pageConfig.config" @setCurrentWidget="setCurrentWidget" />
     <div class="layout_setting">
@@ -53,7 +53,7 @@ import componentSettingMap from '../autoImport/componentSettingMap.js';
 import Header from './setting/components/Header.vue';
 import { usePageConfig } from './useSetting.js';
 
-import Slider from './slider/index.vue';
+import panel from './panel/index.vue';
 import Render from './render/index.vue';
 import ComponentManage from './setting/componentManage.vue';
 
@@ -106,7 +106,7 @@ const handleSetting = actionType => {
   justify-content: space-between;
 }
 
-.layout_slider {
+.layout_panel {
   width: 280px;
   height: 100vh;
   overflow-y: scroll;
