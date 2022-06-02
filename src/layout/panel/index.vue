@@ -30,15 +30,15 @@ import draggable from 'vuedraggable';
 const props = defineProps({
   panel: {
     type: Array,
-    default: () => []
-  }
-})
+    default: () => [],
+  },
+});
 
 const defaultActive = ref(props.panel.map(item => item.id));
 
 const hasMover = computed(() => element => {
   if (element && element.maxCount && Number(element.currentCount || 0) >= Number(element.maxCount || 0)) {
-    console.log('超过限制 不能拖动了！')
+    console.log('超过限制 不能拖动了！');
     return 'cus_pointer';
   }
   return 'mover';

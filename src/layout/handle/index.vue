@@ -23,12 +23,10 @@
   </div>
 </template>
 
-<script setup>
+<script setup></script>
 
-</script>
-
-<style lang='less'>
-.handle_collection{
+<style lang="less">
+.handle_collection {
   position: fixed;
   top: 0;
   height: 55px;

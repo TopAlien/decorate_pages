@@ -9,7 +9,7 @@
             <icon-drag-arrow />
           </template>
           <div class="manage_item--label">
-            <img class="manage_item--icon" :src="element.icon" alt="" /> 
+            <img class="manage_item--icon" :src="element.icon" alt="" />
             <span>{{ element.label }}</span>
           </div>
           <a-popconfirm position="left" content="确认删除该组件吗?" @ok="deleteWidget(element, props)">
@@ -33,8 +33,8 @@ const props = defineProps({
   },
   panel: {
     type: Array,
-    default: () => []
-  }
+    default: () => [],
+  },
 });
 </script>
 

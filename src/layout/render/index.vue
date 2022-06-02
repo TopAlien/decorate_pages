@@ -52,8 +52,8 @@ const props = defineProps({
   },
   panel: {
     type: Array,
-    default: () => []
-  }
+    default: () => [],
+  },
 });
 
 const emit = defineEmits(['setCurrentWidget']);

@@ -3,16 +3,11 @@
 ### 开发指北
 
 #### 新增组件？
-##### 答：文件夹layout/panel/setting.js 新增组件，详见文件夹内README.md
+##### /widget 下新建组件， /layout/panel/setting.js 新配置即可。
 
 ##### 页面设置可能会通用，所以文件夹位置在setting/pageSetting/[文件名称]下按照文件名称自动导入，使用时 component: '文件名称' 即可。
 ```js
   /autoImport/pageSettingMap.js 自动导入
-```
-
-##### 组件设置文件跟随可拖动组件引入，约定位置 widget/[组件名称]/componentSetting/[文件名], 自动导入， 使用时 component: '文件名称' 即可。
-```js
-  /autoImport/componentSettingMap.js 自动导入
 ```
 
 ##### 页面设置不自定义，通过url携带type值指定，可以自由组合 /layout/useSetting.js 例：
@@ -30,6 +25,11 @@ export const pageConfigSelect = type => {
   /** type 根据url链接参数获取 */
   return pageConfigMap.get(type || 'default');
 };
+```
+
+##### 组件设置文件跟随可拖动组件引入，约定位置 widget/[组件名称]/componentSetting/[文件名], 自动导入， 使用时 component: '文件名称' 即可。
+```js
+  /autoImport/componentSettingMap.js 自动导入
 ```
 
 #### layout/panel/setting.js
@@ -50,18 +50,21 @@ export const pageConfigSelect = type => {
       /** 组件Icon */
       icon: '商品ICON',
       /** 
-       * 渲染这个组件的名称，与。。。文件下文件名对应, 命名规则：xxxComponent,  
-       * /autoImport/renderComponentsMap.js 自动导入 设置一级目录文件名称即可
+       * /autoImport/renderComponentsMap.js 自动导入
+       * 设置widget下一级目录名称作为组件名即可 内部文件必须存在一个index.vue作为组件页面
        * */
-      name: 'ShopComponent',
-      /** 组件所使用的组件设置页面 */
-      useComponentName: ''
+      name: 'ShopSearch',
+      /** 
+       * /autoImport/componentSettingMap.js 自动导入
+       * 组件所使用的组件配置页面
+       * */
+      useComponentName: 'shopSearchSetting'
       /** 组件配置 */
       componentConfig: {},
       /** 当前组件最大可渲染几个， 不填写或0表示无限制 */
       maxCount: 10,
       /** 当前组件渲染了几个， 字段可不填， 手动填写场景： 当前组件需要开通权限*/
-      currentCount: 0
+      currentCount: 0,
     }
   ]
 }

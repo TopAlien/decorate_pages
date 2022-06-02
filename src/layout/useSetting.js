@@ -13,17 +13,17 @@ export const pageConfigSelect = type => {
   return pageConfigMap.get(type || 'default');
 };
 
-import { reactive } from "vue";
+import { reactive } from 'vue';
 import { getQueryVariable } from '../utils';
 
 export const usePageConfig = () => {
   const getPageConfig = pageConfigSelect(getQueryVariable('type'));
   const pageConfig = reactive({
     config: getPageConfig.config,
-    component: getPageConfig.component
-  })
+    component: getPageConfig.component,
+  });
 
   return {
-    pageConfig
-  }
-}
+    pageConfig,
+  };
+};

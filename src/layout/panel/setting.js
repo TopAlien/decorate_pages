@@ -14,7 +14,7 @@ export const panel = [
         componentConfig: {},
         useComponentName: 'shopSearchSetting',
         maxCount: 0,
-        currentCount: ''
+        currentCount: '',
       },
       {
         id: '1-2',
@@ -24,7 +24,7 @@ export const panel = [
         componentConfig: {},
         useComponentName: 'shopSearchSetting',
         maxCount: 20,
-      }
+      },
     ],
   },
   {
