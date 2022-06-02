@@ -66,7 +66,7 @@ const handleClone = (target, groupIndex) => {
   background-color: white;
 }
 .collapse_slide .arco-collapse-item-content {
-  padding: 13px;
+  padding: 13px 13px 0 13px;
 }
 .panel_wrap {
   padding: 10px 10px 0;
@@ -81,7 +81,6 @@ const handleClone = (target, groupIndex) => {
   width: 80px;
   padding: 10px 0 10px;
   box-sizing: border-box;
-  margin-bottom: 20px;
   text-align: center;
   font-size: 12px;
   color: #323233;
