@@ -57,6 +57,14 @@ const handleClone = (target, groupIndex) => {
 </script>
 
 <style>
+.collapse_slide.arco-collapse {
+  line-height: normal;
+  border: none;
+  border-radius: none;
+}
+.collapse_slide.arco-collapse .arco-collapse-item-content {
+  background-color: white;
+}
 .collapse_slide .arco-collapse-item-content {
   padding: 13px;
 }
