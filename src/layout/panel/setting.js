@@ -13,6 +13,17 @@ export const panel = [
         name: 'ShopSearch',
         componentConfig: {},
         useComponentName: 'shopSearchSetting',
+        maxCount: 0,
+        currentCount: ''
+      },
+      {
+        id: '1-2',
+        label: '商品搜索',
+        icon: shopSearchIcon,
+        name: 'ShopSearch',
+        componentConfig: {},
+        useComponentName: 'shopSearchSetting',
+        maxCount: 20,
       }
     ],
   },
@@ -27,6 +38,7 @@ export const panel = [
         name: 'Shop',
         componentConfig: {},
         useComponentName: '',
+        maxCount: 1,
       },
     ],
   },

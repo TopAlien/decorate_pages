@@ -1,20 +1,21 @@
 <template>
   <div class="layout">
+    <HeaderHandle />
     <div class="layout_panel">
-      <panel />
+      <Panel :panel="decoratePage.panel" />
     </div>
-    <Render :widgets="decoratePage.widgets" :pageConfig="pageConfig.config" @setCurrentWidget="setCurrentWidget" />
+    <Render :widgets="decoratePage.widgets" :pageConfig="pageConfig.config" @setCurrentWidget="setCurrentWidget" :panel="decoratePage.panel" />
     <div class="layout_setting">
       <div class="layout_setting--btns">
         <a-space direction="vertical" size="medium">
           <div v-for="item in settingBtn" :key="item.id">
             <a-button
-              v-if="item.actionType === 'componentSetting' ? showComponentSetting : true"
-              :type="currentSetting === item.actionType ? 'primary' : 'outline'"
+              :type="currentSetting === item.actionType ? 'primary' : 'secondary'"
               @click="handleSetting(item.actionType)"
             >
               <template #icon>
-                <icon-settings />
+                <icon-settings v-if="item.actionType === 'pageSetting'" />
+                <icon-layers v-else />
               </template>
               {{ item.label }}
             </a-button>
@@ -23,22 +24,21 @@
       </div>
 
       <div class="layout_setting--box">
-        <div v-show="currentSetting === 'pageSetting'">
+        <div v-if="currentSetting === 'pageSetting'">
           <Header title="页面设置" />
           <component :is="pageSettingMap[pageConfig.component]" :config="pageConfig.config" />
         </div>
+        <div v-if="currentSetting === 'componentManage'">
+          <Header title="组件管理" />
+          <ComponentManage :widgets="decoratePage.widgets" :panel="decoratePage.panel" />
+        </div>
 
-        <div v-show="currentSetting === 'componentSetting'">
+        <div v-if="currentSetting === 'componentSetting'">
           <Header title="组件设置" />
           <component
             :is="componentSettingMap[currentWidget.useComponentName || 'defaultSetting']"
             :config="currentWidget.componentConfig"
           />
-        </div>
-
-        <div v-show="currentSetting === 'componentManage'">
-          <Header title="组件管理" />
-          <ComponentManage :widgets="decoratePage.widgets" />
         </div>
       </div>
     </div>
@@ -46,14 +46,15 @@
 </template>
 
 <script setup>
-import { reactive, ref, computed } from 'vue';
-import { IconSettings } from '@arco-design/web-vue/es/icon';
+import { reactive, ref } from 'vue';
 import pageSettingMap from '../autoImport/pageSettingMap.js';
 import componentSettingMap from '../autoImport/componentSettingMap.js';
 import Header from './setting/components/Header.vue';
 import { usePageConfig } from './useSetting.js';
+import { panel } from './panel/setting.js';
 
-import panel from './panel/index.vue';
+import HeaderHandle from './handle/index.vue';
+import Panel from './panel/index.vue';
 import Render from './render/index.vue';
 import ComponentManage from './setting/componentManage.vue';
 
@@ -61,18 +62,16 @@ const { pageConfig } = usePageConfig();
 
 const decoratePage = reactive({
   widgets: [],
+  panel
 });
 
 const currentWidget = ref({});
-const showComponentSetting = ref(false);
 const setCurrentWidget = (current, index) => {
   /** index -1 为顶部标题组件 */
-  showComponentSetting.value = false;
   if (index === -1) {
     handleSetting('pageSetting');
   } else {
     handleSetting('componentSetting');
-    showComponentSetting.value = true;
     currentWidget.value = current;
   }
 };
@@ -88,11 +87,6 @@ const settingBtn = [
     label: '组件管理',
     actionType: 'componentManage',
   },
-  {
-    id: 3,
-    label: '组件设置',
-    actionType: 'componentSetting',
-  },
 ];
 const currentSetting = ref('pageSetting');
 const handleSetting = actionType => {
@@ -104,6 +98,7 @@ const handleSetting = actionType => {
 .layout {
   display: flex;
   justify-content: space-between;
+  padding-top: 55px;
 }
 
 .layout_panel {

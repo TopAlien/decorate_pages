@@ -58,6 +58,10 @@ export const pageConfigSelect = type => {
       useComponentName: ''
       /** 组件配置 */
       componentConfig: {},
+      /** 当前组件最大可渲染几个， 不填写或0表示无限制 */
+      maxCount: 10,
+      /** 当前组件渲染了几个， 字段可不填， 手动填写场景： 当前组件需要开通权限*/
+      currentCount: 0
     }
   ]
 }
@@ -71,3 +75,6 @@ export const pageConfigSelect = type => {
 
 ### 目前是模版状态，基本成型写想要的组件样式就可以了
 ![alt text](./src/assets/11.png)
+
+### 新增组件渲染个数限制，部分优化
+![alt text](./src/assets/22.png)

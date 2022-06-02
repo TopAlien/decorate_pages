@@ -19,7 +19,7 @@
               <a-button class="widget_item--delete">
                 {{ element.label }}
               </a-button>
-              <a-popconfirm position="left" content="确认删除该组件吗?" @ok="handleDelete(element)">
+              <a-popconfirm position="left" content="确认删除该组件吗?" @ok="deleteWidget(element, props)">
                 <a-button>
                   <template #icon>
                     <icon-delete />
@@ -36,10 +36,10 @@
 
 <script setup>
 import { ref } from 'vue';
-import { IconDelete } from '@arco-design/web-vue/es/icon';
 import draggable from 'vuedraggable';
 import PhoneView from '../../components/PhoneView.vue';
 import renderComponentsMap from '../../autoImport/renderComponentsMap.js';
+import { deleteWidget } from '../../utils';
 
 const props = defineProps({
   widgets: {
@@ -50,6 +50,10 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
+  panel: {
+    type: Array,
+    default: () => []
+  }
 });
 
 const emit = defineEmits(['setCurrentWidget']);
@@ -58,13 +62,6 @@ const currentWidgetIndex = ref(null);
 const handleClickWidget = (current, index) => {
   currentWidgetIndex.value = index;
   emit('setCurrentWidget', current, index);
-};
-
-const handleDelete = ({ id }) => {
-  const index = props.widgets.findIndex(item => item.id === id);
-  if (index >= 0) {
-    props.widgets.splice(index, 1);
-  }
 };
 </script>
 

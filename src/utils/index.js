@@ -9,3 +9,20 @@ export const getQueryVariable = (variable, urlSearch = window.location.search) =
   }
   return '';
 };
+
+export const deleteWidget = (element, props) => {
+  const { id } = element
+  const index = props.widgets.findIndex(item => item.id === id);
+  if (index >= 0) {
+    props.widgets.splice(index, 1);
+
+    /** 更新panel */
+    try {
+      const pid = id.split('-')[0];
+      const pIndex = props.panel.findIndex(item => item.id === pid);
+      const cIndex = props.panel[pIndex].children.findIndex(item => item.id === id);
+
+      (props.panel[pIndex].children[cIndex].currentCount)--
+    }catch{}
+  }
+}

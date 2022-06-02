@@ -2,15 +2,17 @@
   <div>
     <a-empty v-if="!props.widgets || props.widgets.length <= 0" description="暂无组件" />
     <draggable v-else :list="props.widgets" item-key="id">
-      <template #item="{ element }">
+      <template #item="{ element, index }">
         <a-button type="dashed" long class="component_manage--item">
+          {{ index + 1 }}.
           <template #icon>
             <icon-drag-arrow />
           </template>
-          <span class="manage_item--label">
-            <img class="manage_item--icon" :src="element.icon" alt="" /> {{ element.label }}</span
-          >
-          <a-popconfirm position="left" content="确认删除该组件吗?" @ok="handleDelete(element)">
+          <div class="manage_item--label">
+            <img class="manage_item--icon" :src="element.icon" alt="" /> 
+            <span>{{ element.label }}</span>
+          </div>
+          <a-popconfirm position="left" content="确认删除该组件吗?" @ok="deleteWidget(element, props)">
             <span class="com_item--delete"> <icon-delete /> </span>
           </a-popconfirm>
         </a-button>
@@ -20,28 +22,27 @@
 </template>
 
 <script setup>
-import { IconDragArrow, IconDelete } from '@arco-design/web-vue/es/icon';
-import { toRefs } from 'vue';
 import draggable from 'vuedraggable';
 import Header from './components/Header.vue';
+import { deleteWidget } from '../../utils';
 
 const props = defineProps({
   widgets: {
     type: Array,
     default: () => [],
   },
-});
-
-const handleDelete = ({ id }) => {
-  const index = props.widgets.findIndex(item => item.id === id);
-  if (index >= 0) {
-    props.widgets.splice(index, 1);
+  panel: {
+    type: Array,
+    default: () => []
   }
-};
+});
 </script>
 
 <style scoped>
 .component_manage--item {
+  height: 55px;
+  line-height: 55px;
+  padding: 10px;
   display: flex;
   align-items: center;
   cursor: move;

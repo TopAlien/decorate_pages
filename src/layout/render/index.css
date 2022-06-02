@@ -4,7 +4,6 @@
 
 .widget_item {
   position: relative;
-  border: 1px solid #f7f8fa;
 }
 
 .group_delete {
@@ -22,25 +21,28 @@
 
 .widget_item--active,
 .widget_item.widget_item--active:hover {
-  border: 1px solid rgb(21, 91, 212);
+  outline: 2px solid #155bd4;
+  z-index: 10;
 }
 
 .widget_item:hover {
-  border: 1px dashed rgb(21, 91, 212);
+  outline: 1px dashed #155bd4;
   cursor: pointer;
 }
 
 .render_wrap {
+  position: relative;
   margin-right: 275px;
 }
 
 .render_header {
+  position: absolute;
+  top: 70px;
   width: 100%;
   height: 35px;
   line-height: 35px;
   text-align: center;
   margin-top: -4px;
-  background-color: white;
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
