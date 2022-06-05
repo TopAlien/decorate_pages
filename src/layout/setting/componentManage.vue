@@ -61,7 +61,7 @@ const props = defineProps({
 
 .manage_item--icon {
   height: 25px;
-  border-radius: 50%;
+  border-radius: 2px;
   margin-left: 10px;
   float: left;
 }
