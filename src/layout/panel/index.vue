@@ -62,6 +62,9 @@ const handleClone = (target, groupIndex) => {
   border: none;
   border-radius: none;
 }
+.collapse_slide.arco-collapse .arco-collapse-item, .collapse_slide.arco-collapse .arco-collapse-item-active>.arco-collapse-item-header{
+  border: none;
+}
 .collapse_slide.arco-collapse .arco-collapse-item-content {
   background-color: white;
 }
