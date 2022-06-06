@@ -1,3 +1,5 @@
+import emitter from "../mitt.js";
+
 export const getQueryVariable = (variable, urlSearch = window.location.search) => {
   const query = urlSearch.substring(1);
   const vars = query.split('&');
@@ -15,9 +17,11 @@ export const deleteWidget = (element, props) => {
   const index = props.widgets.findIndex(item => item.id === id);
   if (index >= 0) {
     props.widgets.splice(index, 1);
-
+    
     /** 更新panel */
     try {
+      emitter.emit('deleteSetCurrentWidget')
+
       const pid = id.split('-')[0];
       const pIndex = props.panel.findIndex(item => item.id === pid);
       const cIndex = props.panel[pIndex].children.findIndex(item => item.id === id);

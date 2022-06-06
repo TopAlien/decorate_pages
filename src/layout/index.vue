@@ -55,6 +55,8 @@ import Header from './setting/components/Header.vue';
 import { usePageConfig } from './useSetting.js';
 import { panel } from './panel/setting.js';
 
+import emitter from '../mitt.js'
+
 import HeaderHandle from './handle/index.vue';
 import Panel from './panel/index.vue';
 import Render from './render/index.vue';
@@ -77,6 +79,10 @@ const setCurrentWidget = (current, index) => {
     currentWidget.value = current;
   }
 };
+
+emitter.on('deleteSetCurrentWidget', () => {
+  setCurrentWidget({}, -1)
+})
 
 const settingBtn = [
   {
