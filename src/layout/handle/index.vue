@@ -27,8 +27,6 @@
 
 <style lang="less">
 .handle_collection {
-  position: fixed;
-  top: 0;
   height: 55px;
   width: 100%;
   padding-right: 20px;
@@ -37,7 +35,6 @@
   justify-content: right;
   align-items: center;
   background-color: #fff;
-  box-shadow: 0 1px 0 0 rgb(0 0 0 / 10%);
   box-sizing: border-box;
   z-index: 10;
 }

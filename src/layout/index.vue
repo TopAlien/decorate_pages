@@ -1,44 +1,46 @@
 <template>
-  <div class="layout">
+  <div class="container">
     <HeaderHandle />
-    <div class="layout_panel">
-      <Panel :panel="decoratePage.panel" />
-    </div>
-    <Render :widgets="decoratePage.widgets" :pageConfig="pageConfig.config" @setCurrentWidget="setCurrentWidget" :panel="decoratePage.panel" />
-    <div class="layout_setting">
-      <div class="layout_setting--btns">
-        <a-space direction="vertical" size="medium">
-          <div v-for="item in settingBtn" :key="item.id">
-            <a-button
-              :type="currentSetting === item.actionType ? 'primary' : 'secondary'"
-              @click="handleSetting(item.actionType)"
-            >
-              <template #icon>
-                <icon-settings v-if="item.actionType === 'pageSetting'" />
-                <icon-layers v-else />
-              </template>
-              {{ item.label }}
-            </a-button>
-          </div>
-        </a-space>
+    <div class="layout">
+      <div class="layout_panel">
+        <Panel :panel="decoratePage.panel" />
       </div>
-
-      <div class="layout_setting--box">
-        <div v-if="currentSetting === 'pageSetting'">
-          <Header title="页面设置" />
-          <component :is="pageSettingMap[pageConfig.component]" :config="pageConfig.config" />
+      <Render :widgets="decoratePage.widgets" :pageConfig="pageConfig.config" @setCurrentWidget="setCurrentWidget" :panel="decoratePage.panel" />
+      <div class="layout_setting">
+        <div class="layout_setting--btns">
+          <a-space direction="vertical" size="medium">
+            <div v-for="item in settingBtn" :key="item.id">
+              <a-button
+                :type="currentSetting === item.actionType ? 'primary' : 'secondary'"
+                @click="handleSetting(item.actionType)"
+              >
+                <template #icon>
+                  <icon-settings v-if="item.actionType === 'pageSetting'" />
+                  <icon-layers v-else />
+                </template>
+                {{ item.label }}
+              </a-button>
+            </div>
+          </a-space>
         </div>
-        <div v-if="currentSetting === 'componentManage'">
-          <Header title="组件管理" />
-          <ComponentManage :widgets="decoratePage.widgets" :panel="decoratePage.panel" />
-        </div>
 
-        <div v-if="currentSetting === 'componentSetting'">
-          <Header title="组件设置" />
-          <component
-            :is="componentSettingMap[currentWidget.useComponentName || 'defaultSetting']"
-            :config="currentWidget.componentConfig"
-          />
+        <div class="layout_setting--box">
+          <div v-if="currentSetting === 'pageSetting'">
+            <Header title="页面设置" />
+            <component :is="pageSettingMap[pageConfig.component]" :config="pageConfig.config" />
+          </div>
+          <div v-if="currentSetting === 'componentManage'">
+            <Header title="组件管理" />
+            <ComponentManage :widgets="decoratePage.widgets" :panel="decoratePage.panel" />
+          </div>
+
+          <div v-if="currentSetting === 'componentSetting'">
+            <Header title="组件设置" />
+            <component
+              :is="componentSettingMap[currentWidget.useComponentName || 'defaultSetting']"
+              :config="currentWidget.componentConfig"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -98,12 +100,12 @@ const handleSetting = actionType => {
 .layout {
   display: flex;
   justify-content: space-between;
-  padding-top: 55px;
+  overflow: hidden;
 }
 
 .layout_panel {
   width: 280px;
-  height: 100vh;
+  height: calc(100vh - 55px);
   overflow-y: scroll;
   background-color: white;
 }
@@ -114,7 +116,7 @@ const handleSetting = actionType => {
 
 .layout_setting--box {
   width: 375px;
-  height: 100vh;
+  height: calc(100vh - 55px);
   overflow-y: scroll;
   padding: 20px;
   box-sizing: border-box;

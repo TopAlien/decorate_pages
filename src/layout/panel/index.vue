@@ -62,7 +62,9 @@ const handleClone = (target, groupIndex) => {
   border: none;
   border-radius: none;
 }
-.collapse_slide.arco-collapse .arco-collapse-item, .collapse_slide.arco-collapse .arco-collapse-item-active>.arco-collapse-item-header, .collapse_slide.arco-collapse .arco-collapse-item-header.arco-collapse-item-header-right{
+.collapse_slide.arco-collapse .arco-collapse-item,
+.collapse_slide.arco-collapse .arco-collapse-item-active > .arco-collapse-item-header,
+.collapse_slide.arco-collapse .arco-collapse-item-header.arco-collapse-item-header-right {
   border: none;
 }
 .collapse_slide.arco-collapse .arco-collapse-item-content {
