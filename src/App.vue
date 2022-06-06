@@ -13,5 +13,6 @@ body, html {
   min-width: 1366px;
   background-color: #f7f8fa;
   margin: 0;
+  overflow-y: hidden;
 }
 </style>

@@ -11,8 +11,7 @@
 .phone_view {
   width: 375px;
   border-color: white;
-  height: 667px;
-  margin: 40px 0 0;
+  min-height: 667px;
   box-shadow: 0 0 14px 0 rgb(0 0 0 / 10%);
 }
 

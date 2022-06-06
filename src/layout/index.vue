@@ -5,7 +5,9 @@
       <div class="layout_panel">
         <Panel :panel="decoratePage.panel" />
       </div>
-      <Render :widgets="decoratePage.widgets" :pageConfig="pageConfig.config" @setCurrentWidget="setCurrentWidget" :panel="decoratePage.panel" />
+      <div class="layout_render">
+        <Render :widgets="decoratePage.widgets" :pageConfig="pageConfig.config" @setCurrentWidget="setCurrentWidget" :panel="decoratePage.panel" />
+      </div>
       <div class="layout_setting">
         <div class="layout_setting--btns">
           <a-space direction="vertical" size="medium">
@@ -104,20 +106,31 @@ const handleSetting = actionType => {
 
 <style>
 .layout {
-  display: flex;
-  justify-content: space-between;
-  overflow: hidden;
+  position: relative;
 }
 
 .layout_panel {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 280px;
   height: calc(100vh - 55px);
   overflow-y: scroll;
   background-color: white;
 }
 
+.layout_render{ 
+  position: absolute;
+  left: 280px;
+  top: 0;
+  right: 376px;
+  bottom: 0;
+}
+
 .layout_setting {
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .layout_setting--box {

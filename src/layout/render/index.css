@@ -1,5 +1,5 @@
 .widget_dragWrap {
-  height: 100%;
+  min-height: 602px;
 }
 
 .widget_item {
@@ -31,14 +31,15 @@
 }
 
 .render_wrap {
-  position: relative;
-  margin-right: 275px;
+  height: 85vh;
+  overflow: auto;
+  padding: 40px 0 20px 20px;
 }
 
 .render_header {
   position: absolute;
   top: 70px;
-  width: 100%;
+  width: 375px;
   height: 35px;
   line-height: 35px;
   text-align: center;

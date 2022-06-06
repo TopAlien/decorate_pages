@@ -1,8 +1,3 @@
-<style scoped>
-  .shop_search{
-    height: 50px;
-  }
-</style>
 <template>
   <div class="shop_search">
     shop search
@@ -18,3 +13,9 @@
     }
   })
 </script>
+
+<style lang='less'>
+.shop_search {
+  height: 1000px;
+}
+</style>
