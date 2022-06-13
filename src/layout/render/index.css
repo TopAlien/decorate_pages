@@ -9,7 +9,7 @@
 .group_delete {
   position: absolute;
   top: 0;
-  right: -160px;
+  left: -160px;
 }
 
 .widget_item--delete {
@@ -31,19 +31,17 @@
 }
 
 .render_wrap {
-  height: 85vh;
-  overflow: auto;
-  padding: 40px 0 20px 20px;
+  overflow-y: auto;
+  padding: 20px 0 80px;
 }
 
 .render_header {
   position: absolute;
-  top: 70px;
+  top: 28px;
   width: 375px;
   height: 35px;
   line-height: 35px;
   text-align: center;
-  margin-top: -4px;
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;

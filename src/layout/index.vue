@@ -8,24 +8,25 @@
       <div class="layout_render">
         <Render :widgets="decoratePage.widgets" :pageConfig="pageConfig.config" @setCurrentWidget="setCurrentWidget" :panel="decoratePage.panel" />
       </div>
-      <div class="layout_setting">
-        <div class="layout_setting--btns">
-          <a-space direction="vertical" size="medium">
-            <div v-for="item in settingBtn" :key="item.id">
-              <a-button
-                :type="currentSetting === item.actionType ? 'primary' : 'secondary'"
-                @click="handleSetting(item.actionType)"
-              >
-                <template #icon>
-                  <icon-settings v-if="item.actionType === 'pageSetting'" />
-                  <icon-layers v-else />
-                </template>
-                {{ item.label }}
-              </a-button>
-            </div>
-          </a-space>
-        </div>
 
+      <div class="setting--btns">
+        <a-space direction="vertical" size="medium">
+          <div v-for="item in settingBtn" :key="item.id">
+            <a-button
+              :type="currentSetting === item.actionType ? 'primary' : 'secondary'"
+              @click="handleSetting(item.actionType)"
+            >
+              <template #icon>
+                <icon-settings v-if="item.actionType === 'pageSetting'" />
+                <icon-layers v-else />
+              </template>
+              {{ item.label }}
+            </a-button>
+          </div>
+        </a-space>
+      </div>
+
+      <div class="layout_setting">
         <div class="layout_setting--box">
           <div v-if="currentSetting === 'pageSetting'">
             <Header title="页面设置" />
@@ -107,12 +108,10 @@ const handleSetting = actionType => {
 <style>
 .layout {
   position: relative;
+  display: flex;
 }
 
 .layout_panel {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 280px;
   height: calc(100vh - 55px);
   overflow-y: scroll;
@@ -120,17 +119,10 @@ const handleSetting = actionType => {
 }
 
 .layout_render{ 
-  position: absolute;
-  left: 280px;
-  top: 0;
-  right: 376px;
-  bottom: 0;
-}
-
-.layout_setting {
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: relative;
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .layout_setting--box {
@@ -155,9 +147,9 @@ const handleSetting = actionType => {
   color: white;
 }
 
-.layout_setting--btns {
+.setting--btns {
   position: absolute;
-  left: -124px;
+  right: 385px;
   top: 50px;
 }
 </style>

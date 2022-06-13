@@ -19,7 +19,7 @@
               <a-button class="widget_item--delete">
                 {{ element.label }}
               </a-button>
-              <a-popconfirm position="left" content="确认删除该组件吗?" @ok="deleteWidget(element, props)">
+              <a-popconfirm position="top" content="确认删除该组件吗?" @ok="deleteWidget(element, props)">
                 <a-button>
                   <template #icon>
                     <icon-delete />
