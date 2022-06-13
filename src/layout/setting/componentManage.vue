@@ -1,19 +1,40 @@
 <template>
   <div>
-    <a-empty v-if="!props.widgets || props.widgets.length <= 0" description="暂无组件" />
-    <draggable v-else :list="props.widgets" item-key="id">
+    <a-empty
+      v-if="!props.widgets || props.widgets.length <= 0"
+      description="暂无组件"
+    />
+    <draggable
+      v-else
+      :list="props.widgets"
+      item-key="id"
+    >
       <template #item="{ element, index }">
-        <a-button type="dashed" long class="component_manage--item">
+        <a-button
+          type="dashed"
+          long
+          class="component_manage--item"
+        >
           {{ index + 1 }}.
           <template #icon>
             <icon-drag-arrow />
           </template>
           <div class="manage_item--label">
-            <img class="manage_item--icon" :src="element.icon" alt="" />
+            <img
+              class="manage_item--icon"
+              :src="element.icon"
+              alt=""
+            />
             <span>{{ element.label }}</span>
           </div>
-          <a-popconfirm position="left" content="确认删除该组件吗?" @ok="deleteWidget(element, props)">
-            <span class="com_item--delete"> <icon-delete /> </span>
+          <a-popconfirm
+            position="left"
+            content="确认删除该组件吗?"
+            @ok="deleteWidget(element, props)"
+          >
+            <span class="com_item--delete">
+              <icon-delete />
+            </span>
           </a-popconfirm>
         </a-button>
       </template>
@@ -22,20 +43,20 @@
 </template>
 
 <script setup>
-import draggable from 'vuedraggable';
-import Header from './components/Header.vue';
-import { deleteWidget } from '../../utils';
+import draggable from 'vuedraggable'
+import Header from './components/Header.vue'
+import { deleteWidget } from '../../utils'
 
 const props = defineProps({
   widgets: {
     type: Array,
-    default: () => [],
+    default: () => []
   },
   panel: {
     type: Array,
-    default: () => [],
-  },
-});
+    default: () => []
+  }
+})
 </script>
 
 <style scoped>

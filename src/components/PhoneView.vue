@@ -1,6 +1,10 @@
 <template>
   <div class="phone_view">
-    <img class="phone_view--state" src="../assets/phoneTop.png" alt="" />
+    <img
+      class="phone_view--state"
+      src="../assets/phoneTop.png"
+      alt=""
+    />
     <slot />
   </div>
 </template>

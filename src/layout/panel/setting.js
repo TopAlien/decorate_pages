@@ -1,5 +1,5 @@
-import shopSearchIcon from '../../assets/panel/shop_search.png';
-import shopIcon from '../../assets/panel/goods.png';
+import shopSearchIcon from '../../assets/panel/shop_search.png'
+import shopIcon from '../../assets/panel/goods.png'
 
 export const panel = [
   {
@@ -14,7 +14,7 @@ export const panel = [
         componentConfig: {},
         useComponentName: 'shopSearchSetting',
         maxCount: 0,
-        currentCount: '',
+        currentCount: ''
       },
       {
         id: '1-2',
@@ -23,9 +23,9 @@ export const panel = [
         name: 'ShopSearch',
         componentConfig: {},
         useComponentName: 'shopSearchSetting',
-        maxCount: 20,
-      },
-    ],
+        maxCount: 20
+      }
+    ]
   },
   {
     id: '2',
@@ -38,8 +38,8 @@ export const panel = [
         name: 'Shop',
         componentConfig: {},
         useComponentName: '',
-        maxCount: 1,
-      },
-    ],
-  },
-];
+        maxCount: 1
+      }
+    ]
+  }
+]

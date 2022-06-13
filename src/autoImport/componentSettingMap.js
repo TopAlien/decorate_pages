@@ -3,12 +3,12 @@
  */
 import defaultSetting from '../layout/setting/componentSetting/defaultSetting.vue'
 
- const files = import.meta.globEager('../widget/*/componentSetting/*.vue');
- const componentSettingMap = {
+const files = import.meta.globEager('../widget/*/componentSetting/*.vue')
+const componentSettingMap = {
   defaultSetting
- };
- for (const key in files) {
-  componentSettingMap[key.split('componentSetting')[1]?.replace(/(\/|\.vue)/g, '')] = files[key].default;
- }
- 
- export default componentSettingMap;
+}
+for (const key in files) {
+  componentSettingMap[key.split('componentSetting')[1]?.replace(/(\/|\.vue)/g, '')] = files[key].default
+}
+
+export default componentSettingMap

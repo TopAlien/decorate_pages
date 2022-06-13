@@ -7,7 +7,8 @@ import Layout from './layout/index.vue'
 </script>
 
 <style>
-body, html {
+body,
+html {
   height: 100%;
   width: 100%;
   min-width: 1366px;

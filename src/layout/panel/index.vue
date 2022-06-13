@@ -1,6 +1,14 @@
 <template>
-  <a-collapse class="collapse_slide" :default-active-key="defaultActive" expand-icon-position="right">
-    <a-collapse-item v-for="(group, index) in props.panel" :key="group.id" :header="group.label">
+  <a-collapse
+    class="collapse_slide"
+    :default-active-key="defaultActive"
+    expand-icon-position="right"
+  >
+    <a-collapse-item
+      v-for="(group, index) in props.panel"
+      :key="group.id"
+      :header="group.label"
+    >
       <draggable
         class="panel_group"
         :list="group.children"
@@ -13,7 +21,10 @@
           <div :class="['slide_item', hasMover(element)]">
             <img :src="element.icon" />
             <div class="panel_label">{{ element.label }}</div>
-            <p class="select_proportion" v-show="element.maxCount">
+            <p
+              class="select_proportion"
+              v-show="element.maxCount"
+            >
               <span>{{ element.currentCount || 0 }}/{{ element.maxCount }}</span>
             </p>
           </div>
@@ -24,36 +35,36 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import draggable from 'vuedraggable';
+import { ref, computed } from 'vue'
+import draggable from 'vuedraggable'
 
 const props = defineProps({
   panel: {
     type: Array,
-    default: () => [],
-  },
-});
+    default: () => []
+  }
+})
 
-const defaultActive = ref(props.panel.map(item => item.id));
+const defaultActive = ref(props.panel.map(item => item.id))
 
 const hasMover = computed(() => element => {
   if (element && element.maxCount && Number(element.currentCount || 0) >= Number(element.maxCount || 0)) {
-    console.log('超过限制 不能拖动了！');
-    return 'cus_pointer';
+    console.log('超过限制 不能拖动了！')
+    return 'cus_pointer'
   }
-  return 'mover';
-});
+  return 'mover'
+})
 
 const handleClone = (target, groupIndex) => {
   if (target.pullMode === 'clone') {
     try {
-      const count = Number(props.panel[groupIndex].children[target.oldIndex].currentCount || 0);
-      props.panel[groupIndex].children[target.oldIndex].currentCount = count + 1;
+      const count = Number(props.panel[groupIndex].children[target.oldIndex].currentCount || 0)
+      props.panel[groupIndex].children[target.oldIndex].currentCount = count + 1
     } catch {
-      console.error('计数问题');
+      console.error('计数问题')
     }
   }
-};
+}
 </script>
 
 <style>

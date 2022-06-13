@@ -11,7 +11,7 @@
       >
         <template #item="{ element, index }">
           <div
-            :class="['widget_item', index === currentWidgetIndex && 'widget_item--active']"
+            :class="['widget_item', index === props.currentWidgetIndex && 'widget_item--active']"
             @click="handleClickWidget(element, index)"
           >
             <component :is="renderComponentsMap[element.name]" :widget="element" />
@@ -54,13 +54,14 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  currentWidgetIndex: {
+    type: Number
+  }
 });
 
 const emit = defineEmits(['setCurrentWidget']);
 
-const currentWidgetIndex = ref(null);
 const handleClickWidget = (current, index) => {
-  currentWidgetIndex.value = index;
   emit('setCurrentWidget', current, index);
 };
 </script>
