@@ -1,7 +1,10 @@
 <template>
   <div class="render_wrap">
     <PhoneView>
-      <div class="render_header" @click="handleClickWidget({}, -1)">{{ props.pageConfig.title || '页面标题' }}</div>
+      <div
+        class="render_header"
+        @click="handleClickWidget({}, -1)"
+      >{{ props.pageConfig.title || '页面标题' }}</div>
       <draggable
         class="widget_dragWrap"
         :list="props.widgets"
@@ -14,19 +17,15 @@
             :class="['widget_item', index === props.currentWidgetIndex && 'widget_item--active']"
             @click="handleClickWidget(element, index)"
           >
-            <component :is="renderComponentsMap[element.name]" :widget="element" />
-            <a-button-group class="group_delete">
-              <a-button class="widget_item--delete">
+            <component
+              :is="renderComponentsMap[element.name]"
+              :widget="element"
+            />
+            <div class="tooltip_wrap">
+              <div class="tooltip_wrap--label">
                 {{ element.label }}
-              </a-button>
-              <a-popconfirm position="top" content="确认删除该组件吗?" @ok="deleteWidget(element, props)">
-                <a-button>
-                  <template #icon>
-                    <icon-delete />
-                  </template>
-                </a-button>
-              </a-popconfirm>
-            </a-button-group>
+              </div>
+            </div>
           </div>
         </template>
       </draggable>
@@ -35,35 +34,35 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import draggable from 'vuedraggable';
-import PhoneView from '../../components/PhoneView.vue';
-import renderComponentsMap from '../../autoImport/renderComponentsMap.js';
-import { deleteWidget } from '../../utils';
+import { ref } from 'vue'
+import draggable from 'vuedraggable'
+import PhoneView from '../../components/PhoneView.vue'
+import renderComponentsMap from '../../autoImport/renderComponentsMap.js'
+import { deleteWidget } from '../../utils'
 
 const props = defineProps({
   widgets: {
     type: Array,
-    required: true,
+    required: true
   },
   pageConfig: {
     type: Object,
-    default: () => {},
+    default: () => {}
   },
   panel: {
     type: Array,
-    default: () => [],
+    default: () => []
   },
   currentWidgetIndex: {
     type: Number
   }
-});
+})
 
-const emit = defineEmits(['setCurrentWidget']);
+const emit = defineEmits(['setCurrentWidget'])
 
 const handleClickWidget = (current, index) => {
-  emit('setCurrentWidget', current, index);
-};
+  emit('setCurrentWidget', current, index)
+}
 </script>
 
 <style scoped>

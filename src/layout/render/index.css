@@ -47,3 +47,33 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.tooltip_wrap {
+  position: relative;
+  right: 100px;
+  width: 80px;
+}
+
+.tooltip_wrap--label{
+  width: 70px;
+  padding: 4px 8px 4px;
+  color: black;
+  border-radius: 2px;
+  font-size: 12px;
+  background-color: white;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tooltip_wrap::after{
+  position: absolute;
+  top: 6px;
+  right: -16px;
+  display: block;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 5px solid white;
+  border-color: transparent transparent transparent white;
+}
