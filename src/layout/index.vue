@@ -74,9 +74,9 @@ import pageSettingMap from '../autoImport/pageSettingMap.js'
 import componentSettingMap from '../autoImport/componentSettingMap.js'
 import Header from './setting/components/Header.vue'
 import { usePageConfig } from './useSetting.js'
-import { panel } from './panel/setting.js'
+import { panel } from "../config/panelSetting";
 
-import emitter from '../mitt.js'
+import emitter from '../utils/mitt.js'
 
 import HeaderHandle from './handle/index.vue'
 import Panel from './panel/index.vue'

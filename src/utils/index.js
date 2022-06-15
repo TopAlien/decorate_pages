@@ -1,4 +1,4 @@
-import emitter from '../mitt.js'
+import emitter from './mitt.js'
 
 export const getQueryVariable = (variable, urlSearch = window.location.search) => {
   const query = urlSearch.substring(1)
