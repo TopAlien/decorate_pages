@@ -1,16 +1,14 @@
-### [注意命名规范， 例：组件名+ComponentSetting ｜ 组件名+Setting ...]
-
 ### 开发指北
 
 #### 新增组件？
-##### /widget 下新建组件， /layout/panel/setting.js 新配置即可。
+##### /widget 下新建组件， /config/panelSetting.js 新配置即可。
 
 ##### 页面设置可能会通用，所以文件夹位置在setting/pageSetting/[文件名称]下按照文件名称自动导入，使用时 component: '文件名称' 即可。
 ```js
   /autoImport/pageSettingMap.js 自动导入
 ```
 
-##### 页面设置不自定义，通过url携带type值指定，可以自由组合 /layout/useSetting.js 例：
+##### 页面设置不自定义，通过url携带type值指定，可以自由组合 /config/pageSettingSelect.js 例：
 ```js
 export const pageConfigSelect = type => {
   const pageConfigMap = new Map();
@@ -32,7 +30,7 @@ export const pageConfigSelect = type => {
   /autoImport/componentSettingMap.js 自动导入
 ```
 
-#### layout/panel/setting.js
+#### config/panelSetting.js
 ```js
 
 {
