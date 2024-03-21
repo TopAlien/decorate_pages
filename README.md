@@ -79,3 +79,5 @@ export const pageConfigSelect = type => {
 
 ### 新增组件渲染个数限制，部分优化
 ![alt text](./src/assets/22.png)
+
+[![趋势图](https://starchart.cc/TopAlien/decorate_pages.svg)](https://starchart.cc/TopAlien/decorate_pages)
